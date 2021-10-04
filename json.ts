@@ -20,7 +20,8 @@ export function writeJSON(path: string, data: string) { // writes data to a file
 
 export function isFile(filepath:string):boolean {
         try {
-            return statSync(filepath).isFile();
+            if (JSON.parse(readFileSync(path, "utf8")) == "{}" || JSON.parse(readFileSync(path, "utf8")) == "") return false;
+            else return statSync(filepath).isFile();
         } catch (err) {
             return false;
         }
